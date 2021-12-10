@@ -14,21 +14,29 @@ const {
 
 const router = express.Router();
 
-// Get All Products (User)
-router.route("/").get(isAuthenticated, authorizeRoles("Admin"), getAllProducts);
+// Get All Products
+router.route("/").get(isAuthenticated, getAllProducts);
 
-// Get All Products (Admin)
-router
-  .route("/admin/")
-  .get(isAuthenticated, authorizeRoles("Admin"), getAllProductsAdmin);
+// Get Specific Product
+router.route("/:id").get(getSingleProduct);
 
 // Create New Product
 router.route("/new").post(isAuthenticated, createNewProduct);
 
-// Product Specific Routes
+// Review Routes
+// Create Review
+router.route("/review");
+// Delete and Get Reviews
+router.route("/reviews");
+
+// Get All Products (Admin)
 router
-  .route("/:id")
-  .get(getSingleProduct)
+  .route("/admin")
+  .get(isAuthenticated, authorizeRoles("Admin"), getAllProductsAdmin);
+
+// Product Specific Routes (Admin)
+router
+  .route("admin/:id")
   .put(isAuthenticated, authorizeRoles("Admin"), updateProduct)
   .delete(isAuthenticated, authorizeRoles("Admin"), deleteProduct);
 
