@@ -23,10 +23,14 @@ router.route("/").get(isAuthenticated, getAllProducts);
 
 // Get Specific Product
 router.route("/:id").get(getSingleProduct);
+
+// Create and Delete Product Review
 router
   .route("/:id/review")
   .post(isAuthenticated, createReview)
   .delete(isAuthenticated, deleteProductReview);
+
+// Get All Product Reviews
 router.route("/:id/reviews").get(getSingleProduct);
 
 // Create New Product
