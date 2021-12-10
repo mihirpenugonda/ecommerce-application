@@ -6,6 +6,10 @@ const {
   updateProduct,
   deleteProduct,
   getAllProductsAdmin,
+  createReview,
+  getAllReviews,
+  getProductReviews,
+  deleteProductReview,
 } = require("../controllers/productController");
 const {
   isAuthenticated,
@@ -19,15 +23,14 @@ router.route("/").get(isAuthenticated, getAllProducts);
 
 // Get Specific Product
 router.route("/:id").get(getSingleProduct);
+router
+  .route("/:id/review")
+  .post(isAuthenticated, createReview)
+  .delete(isAuthenticated, deleteProductReview);
+router.route("/:id/reviews").get(getSingleProduct);
 
 // Create New Product
 router.route("/new").post(isAuthenticated, createNewProduct);
-
-// Review Routes
-// Create Review
-router.route("/review");
-// Delete and Get Reviews
-router.route("/reviews");
 
 // Get All Products (Admin)
 router
