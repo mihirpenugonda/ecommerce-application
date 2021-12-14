@@ -41,7 +41,7 @@ router
 // Admin Routes
 // Get All Users
 router
-  .route("/admin/")
+  .route("/admin/all")
   .get(isAuthenticated, authorizeRoles("Admin"), getAllUser);
 // Get - Getting User Details Put - Updating User Role Delete - Delete User
 router

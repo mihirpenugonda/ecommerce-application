@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 // Import Routes
 const products = require("./routes/productRoutes");
 const user = require("./routes/userRoutes");
+const order = require("./routes/orderRoutes");
 
 // Import Middleware
 const errorMiddleware = require("./middleware/errorMiddleware");
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 app.use("/api/products", products);
 app.use("/api/user", user);
+app.use("/api/order", order);
 app.use(errorMiddleware);
 
 module.exports = app;

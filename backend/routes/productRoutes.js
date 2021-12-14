@@ -7,7 +7,6 @@ const {
   deleteProduct,
   getAllProductsAdmin,
   createReview,
-  getAllReviews,
   getProductReviews,
   deleteProductReview,
 } = require("../controllers/productController");
@@ -31,14 +30,14 @@ router
   .delete(isAuthenticated, deleteProductReview);
 
 // Get All Product Reviews
-router.route("/:id/reviews").get(getSingleProduct);
+router.route("/:id/reviews").get(getProductReviews);
 
 // Create New Product
 router.route("/new").post(isAuthenticated, createNewProduct);
 
 // Get All Products (Admin)
 router
-  .route("/admin")
+  .route("/admin/all")
   .get(isAuthenticated, authorizeRoles("Admin"), getAllProductsAdmin);
 
 // Product Specific Routes (Admin)
